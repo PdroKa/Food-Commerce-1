@@ -1,16 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.aside`
+interface ContainerProps {
+  isMenuOpen: boolean
+}
+export const Container = styled.aside<ContainerProps>`
 background-color: ${({ theme }) => theme.colors.red};
 
-width: 7.75rem;
-
+  ${({ isMenuOpen }) => isMenuOpen ? css`width: 16.3rem;` : css`width: 7.75rem;`}
+/* width: 7.75rem; */
+/* width: 16.3rem; */
+transition:width .5s;
 padding: 2rem 0;
 overflow: hidden;
 
 display: flex;
 flex-direction: column;
 align-items: center;
+
+
 
 button{
   background: none;
@@ -85,4 +92,55 @@ nav{
     }
     }
   }
+
+  @media (max-width: 720px) {
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+z-index:999;
+
+width:100%;
+height:5rem;
+padding:0;
+overflow-y:auto;
+
+  button{
+    display:none;
+  }
+  nav{
+    height:100%;
+    ul{
+      align-items:center;
+      flex-direction:row;
+    }
+    li{
+      a{
+        flex-direction:column;
+        padding:0;
+
+        svg{
+          width:3.25rem;
+          height:3.25rem;
+        }
+        span{
+          display:none;
+        }
+
+        &.active{
+          &::after{
+          height:3px;
+          width: calc(100%);
+
+          left: 0;
+          top: calc(100% + 10px);
+          bottom: 0;
+          transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+}
+
 `;
