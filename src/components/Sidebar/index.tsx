@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Container } from './styles';
+import React, { useState } from 'react'
+import { Container } from './styles'
+import { NavLink } from 'react-router-dom'
 
 import { ReactComponent as BurgerIcon } from '../../assets/burger.svg'
 import { ReactComponent as SodaIcon } from '../../assets/soda.svg'
@@ -16,35 +17,36 @@ export function Sidebar() {
   return (
     <Container isMenuOpen={menuOpen}>
       <button type='button' onClick={handleToggleMenu}>
-        <img src={menuImg} alt="Menu sidebar" />
+        <img src={menuImg} alt='Menu sidebar' />
       </button>
       <nav>
         <ul>
           <li>
-            <a href="#" className='active'>
+            <NavLink to={'/'}>
               <BurgerIcon />
               <span>Hamburgueres</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#" >
+            <NavLink to={'pizzas'}>
               <PizzaIcon />
               <span>Pizza</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink to={'drinks'}>
               <SodaIcon />
               <span>Soda</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#" >
+            <NavLink to={'ice-creams'}>
               <IceCreamIcon />
               <span>IceCream</span>
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>
-    </Container>)
+    </Container>
+  )
 }
